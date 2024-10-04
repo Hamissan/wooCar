@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Car List</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <style>
+    /* General table styles */
+    table {
+      width: 100%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+    }
+
+    table, th, td {
+      border: 1px solid #d4af37; /* Gold border */
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #d4af37; /* Gold background for header */
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #fff8dc; /* Light gold for alternate rows */
+    }
+
+    tr:hover {
+      background-color: #f0e68c; /* Khaki background on hover */
+    }
+
+    a {
+      display: block;
+      width: fit-content;
+      margin: 20px auto;
+      text-align: center;
+      text-decoration: none;
+      color: #333;
+      border: 1px solid #d4af37;
+      padding: 8px 16px;
+      border-radius: 5px;
+      background-color: #fff8dc;
+    }
+
+    a:hover {
+      background-color: #f0e68c;
+      color: #000;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .table-wrapper {
+        width: 100%;
+        overflow-x: auto; /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on touch devices */
+      }
+
+      table {
+        width: 100%; /* Ensure the table still uses full width */
+        min-width: 600px; /* Minimum width to keep table layout consistent */
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <h1>List of Registered Cars</h1>
+  
+  <div class="table-wrapper">
+    <% if (cars.length === 0) { %>
+      <p>No registered cars. Be the first to <a href="/add-car">register your car</a>!</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Owner</th>
+            <th>Registration Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% cars.forEach(car => { %>
+            <tr>
+              <td><%= car.make %></td>
+              <td><%= car.model %></td>
+              <td><%= car.year %></td>
+              <td><%= car.owner %></td>
+              <td><%= car.registrationNumber %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } %>
+  </div>
+
+  <a href="/">Back to Home</a>
+</body>
+</html>

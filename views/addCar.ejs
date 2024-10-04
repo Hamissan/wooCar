@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Register Your Car</title>
+  <link rel="stylesheet" type="text/css" href="/register-car.css">
+  <link rel="stylesheet" href="/node_modules/flag-icon-css/css/flag-icon.min.css">
+
+  <style>
+    .country-select {
+      display: flex;
+      align-items: center;
+    }
+
+    .country-select .flag-icon {
+      margin-right: 10px;
+    }
+
+    select {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: #fffbe6;
+      color: #6b5c00;
+    }
+
+    input {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: #fffbe6;
+      color: #6b5c00;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      select, input {
+        font-size: 14px;
+        padding: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      select, input {
+        font-size: 13px;
+        padding: 7px;
+      }
+    }
+  </style>
+
+  <script>
+    // Script for updating the country code prefix based on selected country
+    function updateCountryPrefix() {
+      const countrySelect = document.getElementById('country');
+      const registrationField = document.getElementById('registrationNumber');
+
+      // Define country prefixes (e.g., 'K' for Kenya, 'A' for USA)
+      const countryPrefixes = {
+        'Kenya': 'K',
+        'USA': 'US',
+        'UK': 'UK'
+        // Add more country prefixes here
+      };
+
+      const selectedCountry = countrySelect.value;
+      registrationField.value = countryPrefixes[selectedCountry] || '';
+    }
+
+    // Dynamic car model selection based on the selected make
+    function updateModelDropdown() {
+      const make = document.getElementById('make').value;
+      const modelDropdown = document.getElementById('model');
+
+      // Clear the current model options
+      modelDropdown.innerHTML = '';
+
+      const models = {
+        'Toyota': ['Camry', 'Corolla', 'RAV4'],
+        'Honda': ['Civic', 'Accord', 'CR-V'],
+        'Ford': ['Mustang', 'F-150', 'Explorer'],
+        'BMW': ['3 Series', 'X5', 'Z4'],
+        'Mercedes': ['C-Class', 'E-Class', 'S-Class']
+      };
+
+      // Get the models for the selected make, or default to an empty array
+      const selectedModels = models[make] || [];
+
+      // Populate the model dropdown
+      selectedModels.forEach(function (model) {
+        const option = document.createElement('option');
+        option.value = model;
+        option.text = model;
+        modelDropdown.add(option);
+      });
+    }
+
+    // Validate registration number format
+    function validateRegistrationNumber(event) {
+      const registrationNumber = document.getElementById('registrationNumber').value;
+      const regex = /^[A-Z]{3}[0-9]{3}[A-Z]{1}$/; // Three letters, three digits, one letter
+      if (!regex.test(registrationNumber)) {
+        alert('Registration number must be in the format ABC123D (3 letters, 3 digits, 1 letter).');
+        event.preventDefault(); // Prevent form submission
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Register Car</h1>
+    <form action="/add-car" method="POST" onsubmit="validateRegistrationNumber(event)">
+      <!-- Country Dropdown with Flags -->
+      <label>Country:</label>
+      <select id="country" name="country" onchange="updateCountryPrefix()" required>
+        <option value="">Select Country</option>
+        <option value="Kenya">
+          <span class="flag-icon flag-icon-ke"></span> Kenya
+        </option>
+        <option value="USA">
+          <span class="flag-icon flag-icon-us"></span> USA
+        </option>
+        <option value="UK">
+          <span class="flag-icon flag-icon-gb"></span> UK
+        </option>
+        <!-- Add more countries and their flag icons here -->
+      </select>
+    
+      <label for="make">Make:</label>
+      <select id="make" name="make" onchange="updateModelDropdown()" required>
+        <option value="">Select Make</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Honda">Honda</option>
+        <option value="Ford">Ford</option>
+        <option value="BMW">BMW</option>
+        <option value="Mercedes">Mercedes</option>
+      </select>
+    
+      <label for="model">Model:</label>
+      <select id="model" name="model" required>
+        <option value="">Select Model</option>
+      </select>
+    
+      <label for="year">Year:</label>
+      <select name="year" required>
+        <option value="">Select Year</option>
+        <% for(let year = 2024; year >= 1990; year--) { %>
+          <option value="<%= year %>"><%= year %></option>
+        <% } %>
+      </select>
+    
+      <!-- Owner field dynamically populated based on logged-in user -->
+      <label for="owner">Owner:</label>
+      <input type="text" id="owner" name="owner" value="<%= user.firstName %> <%= user.lastName %>" readonly>
+
+      <label for="registrationNumber">Registration Number:</label>
+      <input type="text" id="registrationNumber" name="registrationNumber" placeholder="e.g., KAB123A" required>
+    
+      <button type="submit">Register Car</button><br>
+      <a href="/list-cars">View all cars</a>
+    </form>
+  </div>
+</body>
+</html>

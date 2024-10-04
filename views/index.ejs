@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Woo Car Registration</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header class="main-header">
+    <div class="logo">Woo Car Registration</div>
+    <nav class="nav-menu">
+      <a href="/">Home</a>
+      <a href="/register">Register</a>
+      <a href="/login">Login</a>
+    </nav>
+    <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+  </header>
+
+  <!-- Main Content -->
+  <div class="home-container">
+    <header class="home-header">
+      <h1>Woo Car Registration</h1>
+      <p>Your one-stop solution for managing car registrations.</p>
+    </header>
+
+    <main>
+      <!-- Features Section -->
+      <section class="home-features">
+        <div class="feature-card">
+          <i class="fas fa-car feature-icon"></i>
+          <h3>Add Your Car</h3>
+          <p>Register your vehicle quickly and easily.</p>
+          <a href="/add-car" class="feature-link">Add a new car</a>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-list feature-icon"></i>
+          <h3>View All Cars</h3>
+          <p>Keep track of all registered vehicles in one place.</p>
+          <a href="/list-cars" class="feature-link">View all cars</a>
+        </div>
+      </section>
+
+      <!-- Auth Links Section -->
+      <section class="home-auth-links">
+        <div class="auth-card">
+          <i class="fas fa-user-plus auth-icon"></i>
+          <h3>Register</h3>
+          <p>Create an account to access all features.</p>
+          <a href="/register" class="auth-link">Register</a>
+        </div>
+        <div class="auth-card">
+          <i class="fas fa-sign-in-alt auth-icon"></i>
+          <h3>Login</h3>
+          <p>Already have an account? Log in here.</p>
+          <a href="/login" class="auth-link">Login</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="home-footer">
+    <div class="footer-content">
+      <p>&copy; 2024 Woo Car Registration. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+      </div>
+      <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+        <i class="fas fa-arrow-up"></i>
+      </button>
+    </div>
+  </footer>
+
+  <script>
+   const menuToggle = document.querySelector('.menu-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  const menuOverlay = document.createElement('div');
+  menuOverlay.classList.add('menu-overlay');
+  document.body.appendChild(menuOverlay);
+
+  // Toggle menu and overlay when clicking the menu button
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('show-menu');
+    menuOverlay.classList.toggle('show-overlay');
+  });
+
+  // Close menu when clicking the overlay
+  menuOverlay.addEventListener('click', () => {
+    navMenu.classList.remove('show-menu');
+    menuOverlay.classList.remove('show-overlay');
+  });
+    const backToTopButton = document.querySelector('.back-to-top');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 200) {
+      backToTopButton.style.display = 'flex'; // Show the button after scrolling 200px
+    } else {
+      backToTopButton.style.display = 'none'; // Hide the button at the top of the page
+    }
+  });
+
+  // Back to top functionality
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+  </script>
+  
+</body>
+</html>

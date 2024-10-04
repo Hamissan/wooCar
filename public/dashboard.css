@@ -1,0 +1,99 @@
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f3e8; /* Light gold background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styling */
+.dashboard-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+.dashboard-header h1 {
+    color: #b2985a; /* Gold color */
+    font-size: 28px;
+}
+
+.dashboard-header p {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+/* Action buttons */
+.dashboard-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #b2985a; /* Gold */
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.action-btn i {
+    margin-right: 10px;
+}
+
+.action-btn:hover {
+    background-color: #a3894f; /* Darker gold */
+}
+
+.logout-btn {
+    background-color: #c94f4f; /* Red logout button */
+}
+
+.logout-btn:hover {
+    background-color: #b14444;
+}
+
+/* Alert messages */
+.alert {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .dashboard-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .action-btn {
+        font-size: 16px;
+        padding: 10px;
+    }
+}

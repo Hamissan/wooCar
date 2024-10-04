@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f3e7;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .form-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #d4af37; /* Gold color */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #d4af37; /* Gold color */
+  }
+  
+  label {
+    display: block;
+    margin: 10px 0 5px;
+  }
+  
+  input {
+    width: calc(100% - 22px); /* Adjust width to account for padding and border */
+    padding: 10px;             /* Uniform padding */
+    margin-bottom: 15px;       /* Uniform margin */
+    border: 2px solid #d4af37; /* Gold border */
+    border-radius: 5px;
+    font-size: 16px;           /* Uniform font size */
+    box-sizing: border-box;    /* Include padding and border in element's total width */
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #d4af37; /* Gold color */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #cda45d; /* Darker gold */
+  }
+  
+  p {
+    text-align: center;
+  }
+  
+  @media (max-width: 600px) {
+    .form-container {
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 24px;
+    }
+  }
+  
